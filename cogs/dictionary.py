@@ -45,11 +45,11 @@ class Dictionary(commands.Cog):
             word_element = soup.find("h2", class_="word-header-txt")
             word = word_element.text.strip() if word_element else "Cannot extract word information"
 
-            #Extract definition
+            # Extract definition
             definition_element = soup.find("p")
             definition = definition_element.text.strip() if word_element else "Cannot extract definition information"
 
-            return f"**Word of the Day: {word}**\n Definition: {definition}"
+            return f"**Word of the Day:** {word}\n **Definition:** {definition}"
         
         else:
             return "Failed to fetch the Word of the Day"
@@ -65,7 +65,7 @@ class Dictionary(commands.Cog):
                 word = data[0].get('meta', {}).get('id', word)
                 definitions_data = data[0].get('shortdef', ["No definition found."])
                 definition = "\n".join([f"{i+1}. {defn}" for i, defn in enumerate(definitions_data)])
-                return f"**Word: {word.capitalize()}**\n\n Definition(s): \n{definition}"
+                return f"**Word:** {word}\n **Definition(s):** \n{definition}"
             else:
                 return "Word not found! Please check spelling... or you just made up a word."
         else:
